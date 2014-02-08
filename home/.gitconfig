@@ -1,0 +1,12 @@
+[user]
+	name = Felipe \"Zoc\" Silveira
+	email = TheZoc@users.github.com
+[credential]
+	helper = osxkeychain
+[merge]
+	tool = p4merge
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "p4merge"]
+	path = /usr/local/bin/p4merge

@@ -1,0 +1,25 @@
+PATH=/usr/local/sbin:$PATH
+PATH=$PATH:~/.bin
+export PATH
+
+export GNUTERM='x11'
+
+# Make vim the default editor
+#export EDITOR="vim"
+
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoreboth:erasedups
+export APPEND_HISTORY=1
+export PROMPT_COMMAND="history -a"
+export PAGER=most
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+export CLICOLOR=1
+#export LSCOLORS=ExFxCxDxBxegedabagacad
+
+export RBENV_ROOT="$(brew --prefix rbenv)"
+export GEM_HOME="$(brew --prefix)/opt/gems"
+export GEM_PATH="$(brew --prefix)/opt/gems"
