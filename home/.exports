@@ -18,8 +18,3 @@ export PAGER=most
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 export CLICOLOR=1
-#export LSCOLORS=ExFxCxDxBxegedabagacad
-
-export RBENV_ROOT="$(brew --prefix rbenv)"
-export GEM_HOME="$(brew --prefix)/opt/gems"
-export GEM_PATH="$(brew --prefix)/opt/gems"
