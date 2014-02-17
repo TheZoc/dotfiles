@@ -9,15 +9,15 @@ In future, I might try this in Debian and see how they behave.
 
 To use these, either refer to the original post, or simply install homesick with the command:
 
-````
+```
 sudo gem install homesick
-````
+```
 
 ## Files
 
 #### .aliases
 
-This file checks for which kind of ls is in use (GNU or MacOS X standard). This ensures portability.
+This file checks for which kind of ```ls``` is in use (GNU or MacOS X standard). This ensures portability.
 Also, after the checking is done, it adds some color flavors to the output.
 
 #### .bash_profile
@@ -44,7 +44,7 @@ I'm still working my way to get used to git. This is just a basic setup to work 
 
 ## Extra help
 
-There's a bunch of people that work hard for dotfiles improvement and refinement. [You can check them ou here][3]!
+There's a bunch of people that work hard for dotfiles improvement and refinement. [You can check them out here][3]!
 
 [1]: https://mug.im/blog/2013/01/22/manage-and-share-your-dotfiles-with-homesick/
 [2]: https://github.com/shostakovich/dotfiles
