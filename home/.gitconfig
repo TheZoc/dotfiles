@@ -6,4 +6,5 @@
 [color]
 	ui = true
 [core]
-	excludefiles = /Users/zoc/.gitignore_global
+	excludefiles = ~/.gitignore_global
+	editor = vim
