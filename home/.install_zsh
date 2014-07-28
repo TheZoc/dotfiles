@@ -1,0 +1,10 @@
+#!/bin/sh
+brew update
+brew upgrade
+brew install zsh
+
+sudo -i
+mv /bin/zsh /bin/zsh-apple-original
+ln -s /usr/local/bin/zsh /bin/zsh
+
+curl -L http://install.ohmyz.sh | sh
