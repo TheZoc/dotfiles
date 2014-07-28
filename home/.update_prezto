@@ -1,0 +1,8 @@
+#!/bin/zsh
+cd ~/.zprezto
+
+git fetch upstream
+git checkout master
+git rebase upstream/merge
+
+git pull && git submodule update --init --recursive
