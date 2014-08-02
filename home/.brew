@@ -3,6 +3,10 @@ brew update
 brew upgrade
 
 brew install caskroom/cask/brew-cask
+brew install colordiff
+brew install colormake
+brew install fortune
+brew install ffmpeg --with-libvorbis
 brew install git --with-pcre --with-gettext
 brew install pianobar
 brew install sqlite --with-fts
