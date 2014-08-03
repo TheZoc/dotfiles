@@ -1,4 +1,9 @@
 #!/bin/zsh
+echo Creating Directory ${HOME}/.zsh
+mkdir -p ${HOME}/.zsh
+echo Setting ZDOTDIR to ${HOME}/.zsh
+export ZDOTDIR=${HOME}/.zsh
+
 git clone --recursive https://github.com/thezoc/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
 setopt EXTENDED_GLOB
