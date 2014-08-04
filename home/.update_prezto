@@ -1,8 +1,11 @@
 #!/bin/zsh
-cd ~/.zprezto
+pushd
+cd ${ZDOTDIR}/.zprezto
 
 git fetch upstream
 git checkout master
 git rebase upstream/master
 
 git pull && git submodule update --init --recursive
+
+popd
