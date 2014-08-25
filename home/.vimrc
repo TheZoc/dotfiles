@@ -8,25 +8,16 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
+Plugin 'bling/vim-airline'			" Lightweight vimscript version of powerline
+Plugin 'bling/vim-bufferline'			" Display open buffers
+Plugin 'majutsushi/tagbar'			" Magical C++ tagbar
+Plugin 'sjl/gundo.vim'				" 'Graphical' Undo tree visualizer
+Plugin 'mhinz/vim-signify'			" Add a sign column that shows file changes (needs a version control system)
+Plugin 'scrooloose/syntastic'			" Syntax Error Checking
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle#end()				" required
+filetype plugin indent on			" required
 
 syntax on
 set number
@@ -34,3 +25,15 @@ set background=dark
 colorscheme solarized
 
 set backspace=indent,eol,start
+set laststatus=2
+
+" Vim-Airline config
+let g:airline_powerline_fonts	= 1
+let g:airline_theme		= 'solarized'
+
+" TagBar Config
+nmap <F8> :TagbarToggle<CR>
+
+" Gundo config
+let g:gundo_prefer_python3	= 1		" Enable Python3 Support
+nnoremap <F5> :GundoToggle<CR>			" Bind Gundo Tree to F5 in Normal Mode
