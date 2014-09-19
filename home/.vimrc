@@ -15,6 +15,7 @@ Plugin 'sjl/gundo.vim'				" 'Graphical' Undo tree visualizer
 Plugin 'mhinz/vim-signify'			" Add a sign column that shows file changes (needs a version control system)
 Plugin 'scrooloose/syntastic'		" Syntax Error Checking
 Plugin 'Valloric/YouCompleteMe'		" Code Completion
+Plugin 'godlygeek/tabular'			" Magic Tab alignment
 
 " All of your Plugins must be added before the following line
 call vundle#end()				" required
