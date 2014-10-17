@@ -23,8 +23,12 @@ brew install fasd
 
 # homebrew-cask section!
 brew cask update
+brew cask install appcleaner
 brew cask install caffeine
+brew cask install iterm2
+brew cask install macs-fan-control
 brew cask install nosleep
+brew cask install scroll-reverser
 
 # brew cask install dropbox
 
