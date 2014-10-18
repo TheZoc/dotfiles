@@ -7,13 +7,58 @@ In future, I might try this in Debian and see how they behave.
 
 ## How to Install
 
-To use these, either refer to the original post, or simply install homesick with the command:
+To use these, install homesick.
+
+### Recommended method
+
+Install ```rbenv```.
+A simple and short way to do that with homebrew is:
+
+```
+brew install rbenv
+brew install ruby-build
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+```
+
+Then use:
+
+```
+rbenv install -l
+```
+
+To see the available ruby versions. At the time of this writing, the latest stable version is 2.1.3.
+Then, install it:
+
+```
+rbenv install 2.1.3
+```
+
+And install homesick:
+```
+gem install homesick
+```
+
+Don't forget to add
+```
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+```
+to your shell rc (.bashrc/.zshrc) file!
+
+### Simple and *not* recommended method
+
+Install homesick with the command:
 
 ```
 sudo gem install homesick
 ```
 
+This is not recommended as it will install as root user and it's possible to create potential security issues.
+
 ## Files
+
+A lot has changed lately. This list will be updated soon.
 
 #### .aliases
 
