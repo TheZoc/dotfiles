@@ -39,7 +39,12 @@ And install homesick:
 gem install homesick
 ```
 
-Don't forget to add
+And finally do a rehash:
+```
+rbenv rehash
+```
+
+Also, don't forget to add:
 ```
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
