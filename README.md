@@ -7,9 +7,13 @@ In future, I might try this in Debian and see how they behave.
 
 ## How to Install
 
-To use these, install homesick.
+Steps:
+1) Install homesick
+2) Install dotfiles
 
-### Recommended method
+### Installing Homesick
+
+#### Recommended method
 
 Install ```rbenv```.
 A simple and short way to do that with homebrew is:
@@ -51,7 +55,7 @@ eval "$(rbenv init -)"
 ```
 to your shell rc (.bashrc/.zshrc) file!
 
-### Simple and *not* recommended method
+#### Simple and *not* recommended method
 
 Install homesick with the command:
 
@@ -60,6 +64,23 @@ sudo gem install homesick
 ```
 
 This is not recommended as it will install as root user and it's possible to create potential security issues.
+
+### Installing dotfiles
+
+Run the command:
+```
+homesick clone https://github.com/TheZoc/dotfiles.git
+```
+
+This will download this dotfiles to your user directory. Now you need to link them:
+```
+homesick cd
+homesick link
+```
+
+And you're done!
+
+You might wanto to check .install_zsh and .brew scripts on your home folder ;)
 
 ## Files
 
