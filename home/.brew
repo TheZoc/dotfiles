@@ -6,6 +6,7 @@ brew install caskroom/cask/brew-cask
 brew install cmake
 brew install colordiff
 brew install colormake
+brew install ctags
 brew install fortune
 brew install ffmpeg --with-libvorbis
 brew install git --with-pcre --with-gettext
