@@ -8,7 +8,7 @@ brew install colordiff
 brew install colormake
 brew install ctags
 brew install fortune
-brew install ffmpeg --with-libvorbis
+brew install ffmpeg --with-libvorbis --with-faac
 brew install git --with-pcre --with-gettext
 brew install pianobar
 brew install sqlite --with-fts
@@ -22,12 +22,12 @@ brew install zsh
 # homebrew-cask section!
 brew cask update
 brew cask install appcleaner
-brew cask install caffeine
+# brew cask install caffeine
 brew cask install iterm2
 brew cask install macs-fan-control
 brew cask install nosleep
 brew cask install scroll-reverser
-brew cask install sourcetree
+# brew cask install sourcetree
 
 # brew cask install dropbox
 
