@@ -4,7 +4,7 @@ cd ${ZDOTDIR}/.zprezto
 
 git fetch upstream
 git checkout master
-git rebase upstream/master
+git merge upstream/master
 
 git pull && git submodule update --init --recursive
 

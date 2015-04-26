@@ -21,15 +21,14 @@ brew install zsh
 
 # homebrew-cask section!
 brew cask update
-brew cask install appcleaner
+
+# I prefer to get my caffeine from Mac App Store now.
 # brew cask install caffeine
 brew cask install iterm2
 brew cask install macs-fan-control
 brew cask install nosleep
 brew cask install scroll-reverser
 # brew cask install sourcetree
-
-# brew cask install dropbox
 
 brew cleanup -s
 brew cask cleanup

@@ -37,10 +37,14 @@ dlldata.c
 *_i.c
 *_p.c
 *_i.h
+*.elf
 *.ilk
+*.lo
+*.ko
 *.meta
 *.obj
 *.pch
+*.gch
 *.pdb
 *.pgc
 *.pgd
@@ -56,8 +60,10 @@ dlldata.c
 *.vssscc
 .builds
 *.pidb
+*.o
 *.svclog
 *.scc
+*.slo
 *.userprefs
 
 # Visual C++ cache files

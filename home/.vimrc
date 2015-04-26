@@ -1,5 +1,5 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible					" be iMproved, required
+filetype off						" required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,7 +18,7 @@ Plugin 'Valloric/YouCompleteMe'		" Code Completion
 Plugin 'godlygeek/tabular'			" Magic Tab alignment
 
 " All of your Plugins must be added before the following line
-call vundle#end()				" required
+call vundle#end()					" required
 filetype plugin indent on			" required
 
 syntax on

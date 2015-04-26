@@ -1,19 +1,19 @@
 TheZoc's Dotfiles
 =================
 
-These are my personal dotfiles. Thanks Robert Curth for his [original idea and instructions][1].
-They are tested and work fine in MacOS X 10.9.1
-In future, I might try this in Debian and see how they behave.
+These are my personal dotfiles, managed using [homesick][1]
+They are tested and work fine in MacOS X 10.10.3.
+In future, I might try this in Debian or some other Linux distro and see how they behave.
 
 ## How to Install
 
 Steps:
+
 1) Install homesick
+
 2) Install dotfiles
 
 ### Installing Homesick
-
-#### Recommended method
 
 Install ```rbenv```.
 A simple and short way to do that with homebrew is:
@@ -31,48 +31,57 @@ Then use:
 rbenv install -l
 ```
 
-To see the available ruby versions. At the time of this writing, the latest stable version is 2.1.3.
+To see the available ruby versions. At the time of this writing, the latest stable version is 2.2.2.
 Then, install it:
 
 ```
-rbenv install 2.1.3
+rbenv install 2.2.2
 ```
 
+You now can see the installed Ruby versions and which version is active by running:
+
+```
+rbenv versions
+```
+
+Now you just need to activate the version you just installed. In this example, it's version 2.2.2.
+
+```
+rbenv global 2.2.2
+```
+
+
 And install homesick:
+
 ```
 gem install homesick
 ```
 
 And finally do a rehash:
+
 ```
 rbenv rehash
 ```
 
 Also, don't forget to add:
+
 ```
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 ```
+
 to your shell rc (.bashrc/.zshrc) file!
-
-#### Simple and *not* recommended method
-
-Install homesick with the command:
-
-```
-sudo gem install homesick
-```
-
-This is not recommended as it will install as root user and it's possible to create potential security issues.
 
 ### Installing dotfiles
 
 Run the command:
+
 ```
 homesick clone https://github.com/TheZoc/dotfiles.git
 ```
 
 This will download this dotfiles to your user directory. Now you need to link them:
+
 ```
 homesick cd
 homesick link
@@ -82,41 +91,29 @@ And you're done!
 
 You might wanto to check .install_zsh and .brew scripts on your home folder ;)
 
-## Files
+## File structure
 
-A lot has changed lately. This list will be updated soon.
+There are some utilities in utils folder. That folder should never be linked to home directory, since should be used for setup and maintenance only.
 
-#### .aliases
-
-This file checks for which kind of ```ls``` is in use (GNU or MacOS X standard). This ensures portability.
-Also, after the checking is done, it adds some color flavors to the output.
+There are two files in home directory that can't be moved inside .config folder. They are:
 
 #### .bash_profile
 
-This file is responsible for calling all the linked scripts upon bash execution.
+This file 'sources' all files inside .config/bash. They contain aliases, prompt definition and exports to help with bash.
+Bash isn't my main shell anymore - I've adopted zsh - but whenever I don't have zsh available, this is a reasonable fallback.
 
-#### .bash_prompt
+#### .vimrc
 
-This one was copied from [Robert Curth repository][2]. I'm liking it so far.
+My personal setup of vim and the set of plugins I use.
 
-#### .exports
 
-Most of it's content was copied from [Robert Curth repository][2] too. I'm still experimenting with some stuff.
+#### .config/git/*
 
-#### .gemrc
-
-I've had so much headache trying to update gem (specially for nokogiri package) that I decided to disable it's automatic generation.
-This seems to fix my problem.
-Also, I'm not a ruby developer - but if I ever need help with documentation, I'll probably search online :)
-
-#### .gitconfig
-
-I'm still working my way to get used to git. This is just a basic setup to work with GitHub.
+Some basic configurations for git and a global gitignore file.
 
 ## Extra help
 
-There's a bunch of people that work hard for dotfiles improvement and refinement. [You can check them out here][3]!
+There's a bunch of people that work hard for dotfiles improvement and refinement. [You can check them out here][2]!
 
-[1]: https://mug.im/blog/2013/01/22/manage-and-share-your-dotfiles-with-homesick/
-[2]: https://github.com/shostakovich/dotfiles
-[3]: http://dotfiles.github.io/
+[1]: https://github.com/technicalpickles/homesick
+[2]: http://dotfiles.github.io/

@@ -1,0 +1,12 @@
+[user]
+	name = Felipe \"Zoc\" Silveira
+	email = TheZoc@users.github.com
+[credential]
+	helper = osxkeychain
+[color]
+	ui = true
+[core]
+	excludefiles = ~/.config/git/gitignore_global
+	editor = vim
+[push]
+	default = simple
