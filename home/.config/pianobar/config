@@ -4,9 +4,10 @@
 #
 # User
 user = @gmail.com
-password = 
+#password = 
 # or
-#password_command = gpg --decrypt ~/password
+# MacOS Keychain password lookup
+password_command = security find-generic-password -g -s pianobar 2>&1 | grep password | sed -e "s/password: \"//" -e "s/\"//"
 
 # Proxy (for those who are not living in the USA)
 control_proxy = http://
