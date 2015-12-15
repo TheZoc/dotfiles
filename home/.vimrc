@@ -8,14 +8,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'bling/vim-airline'			" Lightweight vimscript version of powerline
-Plugin 'bling/vim-bufferline'		" Display open buffers
-Plugin 'majutsushi/tagbar'			" Magical C++ tagbar
-Plugin 'sjl/gundo.vim'				" 'Graphical' Undo tree visualizer
-Plugin 'mhinz/vim-signify'			" Add a sign column that shows file changes (needs a version control system)
-Plugin 'scrooloose/syntastic'		" Syntax Error Checking
-Plugin 'Valloric/YouCompleteMe'		" Code Completion
-Plugin 'godlygeek/tabular'			" Magic Tab alignment
+Plugin 'bling/vim-airline'					" Lightweight vimscript version of powerline
+Plugin 'bling/vim-bufferline'				" Display open buffers
+Plugin 'majutsushi/tagbar'					" Magical C++ tagbar
+Plugin 'sjl/gundo.vim'						" 'Graphical' Undo tree visualizer
+Plugin 'mhinz/vim-signify'					" Add a sign column that shows file changes (needs a version control system)
+Plugin 'scrooloose/syntastic'				" Syntax Error Checking
+Plugin 'Valloric/YouCompleteMe'				" Code Completion
+Plugin 'godlygeek/tabular'					" Magic Tab alignment
+Plugin 'altercation/vim-colors-solarized'	" Solarized Color Scheme
 
 " All of your Plugins must be added before the following line
 call vundle#end()					" required
