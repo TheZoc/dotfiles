@@ -7,6 +7,10 @@
 	ui = true
 [core]
 	excludefiles = ~/.config/git/gitignore_global
-	editor = vim
+	editor = mvim
 [push]
 	default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

@@ -1,6 +1,8 @@
 set nocompatible					" be iMproved, required
 filetype off						" required
 
+set guifont=Meslo\ LG\ S\ DZ\ Regular\ For\ Powerline:h11
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -9,6 +11,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'bling/vim-airline'					" Lightweight vimscript version of powerline
+Plugin 'vim-airline/vim-airline-themes'		" vim-airline themes
 Plugin 'bling/vim-bufferline'				" Display open buffers
 Plugin 'majutsushi/tagbar'					" Magical C++ tagbar
 Plugin 'sjl/gundo.vim'						" 'Graphical' Undo tree visualizer
