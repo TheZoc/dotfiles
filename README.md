@@ -31,11 +31,11 @@ Then use:
 rbenv install -l
 ```
 
-To see the available ruby versions. At the time of this writing, the latest stable version is 2.2.2.
+To see the available ruby versions. At the time of this writing, the latest stable version is 2.3.1.
 Then, install it:
 
 ```
-rbenv install 2.2.2
+rbenv install 2.3.1
 ```
 
 You now can see the installed Ruby versions and which version is active by running:
@@ -44,10 +44,10 @@ You now can see the installed Ruby versions and which version is active by runni
 rbenv versions
 ```
 
-Now you just need to activate the version you just installed. In this example, it's version 2.2.2.
+Now you just need to activate the version you just installed. In this example, it's version 2.3.1.
 
 ```
-rbenv global 2.2.2
+rbenv global 2.3.1
 ```
 
 

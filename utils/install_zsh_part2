@@ -1,9 +1,10 @@
-#!/bin/zsh
+#!/usr/local/bin/zsh
 
 # Only execute this if we are in OSX
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	echo Creating Directory ${HOME}/.zsh
 	mkdir -p ${HOME}/.zsh
+
 	echo Setting ZDOTDIR to ${HOME}/.zsh
 	export ZDOTDIR=${HOME}/.zsh
 
@@ -22,7 +23,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	git fetch upstream
 	git checkout master
 	git submodule update --init --recursive
-	git merge upstream/master
+	echo Be sure to take a look at the utility update_prezto to fully update the install
 
 	popd
 else

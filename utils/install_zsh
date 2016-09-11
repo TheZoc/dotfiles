@@ -6,10 +6,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	brew upgrade
 	brew install zsh
 
-#	This is commented out since it doesnt work on El Capitan
-#	sudo mv /bin/zsh /bin/zsh-apple-original
-#	sudo ln -s /usr/local/bin/zsh /bin/zsh
-
 	sudo sh -c "echo '/usr/local/bin/zsh' >> /etc/shells"
 	sudo sh -c "echo 'export ZDOTDIR=\"\${HOME}/.zsh\"' >> /etc/zshenv"
 	chsh -s /usr/local/bin/zsh

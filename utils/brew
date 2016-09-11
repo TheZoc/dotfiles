@@ -2,7 +2,6 @@
 brew update
 brew upgrade
 
-brew install caskroom/cask/brew-cask
 brew install cmake
 brew install colordiff
 brew install colormake
@@ -12,23 +11,22 @@ brew install ffmpeg --with-libvorbis --with-faac
 brew install git --with-pcre --with-gettext
 brew install pianobar
 brew install sqlite --with-fts
-brew install python --universal
-brew install python3 --universal
+brew install python
+brew install python3
 brew install unrar
 brew install vim --with-perl --override-system-vi --HEAD
 brew install wget --enable-iri
-brew install zsh
 
 # homebrew-cask section!
+brew tap caskroom/cask
 brew cask update
 
-# I prefer to get my caffeine from Mac App Store now.
-# brew cask install caffeine
+# Now using Amphetamine from Mac App Store
+# brew cask install keepingyouawake
+# brew cask install nosleep
 brew cask install iterm2
 brew cask install macs-fan-control
-brew cask install nosleep
 brew cask install scroll-reverser
-# brew cask install sourcetree
 
 brew cleanup -s
 brew cask cleanup
