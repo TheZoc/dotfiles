@@ -12,10 +12,13 @@ brew install git --with-pcre --with-gettext
 brew install pianobar
 brew install sqlite --with-fts
 brew install python
-brew install python3
 brew install unrar
-brew install vim --with-perl --override-system-vi --HEAD
 brew install wget --enable-iri
+brew install rbenv
+brew install macvim
+
+# link apps
+brew linkapps macvim
 
 # homebrew-cask section!
 brew tap caskroom/cask
