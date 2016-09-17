@@ -21,6 +21,7 @@ Plugin 'Valloric/YouCompleteMe'				" Code Completion
 Plugin 'godlygeek/tabular'					" Magic Tab alignment
 Plugin 'altercation/vim-colors-solarized'	" Solarized Color Scheme
 Plugin 'rdnetto/YCM-Generator'				" Plugin to generate YCM extra conf file
+Plugin 'jeaye/color_coded'					" Plugin to colorize the text when programming
 
 " All of your Plugins must be added before the following line
 call vundle#end()					" required

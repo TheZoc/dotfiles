@@ -2,4 +2,26 @@
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-mvim +PluginInstall +qall
+mvim -v +PluginInstall +qall
+
+# Compile YouCompleteMe
+pushd .
+cd ~/.vim/bundle/YouCompleteMe/
+./install.py --clang-completer
+popd
+
+# Compile color_coded
+pushd .
+cd ~/.vim/bundle/color_coded
+pwd
+mkdir build
+cd build
+cmake ..
+make && make install # Compiling with GCC is preferred, ironically
+# Clang works on OS X, but has mixed success on Linux and the BSDs
+
+# Cleanup afterward; frees several hundred megabytes
+make clean && make clean_clang
+popd
+popd
+
