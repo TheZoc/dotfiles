@@ -19,7 +19,7 @@ Plugin 'mhinz/vim-signify'					" Add a sign column that shows file changes (need
 Plugin 'scrooloose/syntastic'				" Syntax Error Checking
 Plugin 'Valloric/YouCompleteMe'				" Code Completion
 Plugin 'godlygeek/tabular'					" Magic Tab alignment
-Plugin 'altercation/vim-colors-solarized'	" Solarized Color Scheme
+Plugin 'NigoroJr/color_coded-colorschemes'	" Solarizeded Color Scheme (Upgraded Solarized to support color_coded plugin)
 Plugin 'rdnetto/YCM-Generator'				" Plugin to generate YCM extra conf file
 Plugin 'jeaye/color_coded'					" Plugin to colorize the text when programming
 
@@ -30,7 +30,7 @@ filetype plugin indent on			" required
 syntax on
 set number
 set background=dark
-colorscheme solarized
+colorscheme solarizeded
 
 set backspace=indent,eol,start
 set laststatus=2
