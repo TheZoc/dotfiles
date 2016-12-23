@@ -1,7 +1,11 @@
 #!/bin/sh
+echo Updating brew...
 brew update
+
+echo Upgrading installed forumlas...
 brew upgrade
 
+echo Installing custom list of formulas...
 brew install cmake
 brew install colordiff
 brew install colormake
@@ -16,6 +20,7 @@ brew install unrar
 brew install wget --enable-iri
 brew install rbenv
 brew install macvim --with-lua --with-override-system-vim
+brew install aria2
 
 # link apps
 brew linkapps macvim
@@ -33,3 +38,5 @@ brew cask install scroll-reverser
 
 brew cleanup -s
 brew cask cleanup
+
+echo Be sure to take a look at setup_mvim to properly config macvim.

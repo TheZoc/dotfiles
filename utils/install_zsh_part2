@@ -8,6 +8,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	echo Setting ZDOTDIR to ${HOME}/.zsh
 	export ZDOTDIR=${HOME}/.zsh
 
+	echo Downloading customized version of Prezto...
 	git clone --recursive https://github.com/thezoc/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
 	setopt EXTENDED_GLOB
