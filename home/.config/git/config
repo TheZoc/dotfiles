@@ -7,10 +7,18 @@
 	ui = true
 [core]
 	excludefiles = ~/.config/git/gitignore_global
-	editor = mvim -f
+	editor = vim -f
 [push]
 	default = simple
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[diff]
+	tool = bc3
+[difftool "bc3"]
+	trustExitCode = true
+[merge]
+	tool = bc3
+[mergetool "bc3"]
+	trustExitCode = true

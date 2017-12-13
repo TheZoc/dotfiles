@@ -1,7 +1,7 @@
 set nocompatible					" be iMproved, required
 filetype off						" required
 
-set guifont=Meslo\ LG\ S\ DZ\ Regular\ For\ Powerline:h11
+set guifont=DejaVu\ Sans\ Mono\ For\ Powerline:h11
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
