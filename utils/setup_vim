@@ -1,13 +1,20 @@
-#!/bin/sh
+#!/bin/bash
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-mvim -v +PluginInstall +qall
+vim -v +PluginInstall +qall
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	brew update
+	brew install cmake
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+	sudo apt-get install build-essential cmake python3 python3-dev
+fi
 
 # Compile YouCompleteMe
 pushd .
 cd ~/.vim/bundle/YouCompleteMe/
-./install.py --clang-completer
+python3 install.py --clang-completer
 popd
 
 # Compile color_coded
