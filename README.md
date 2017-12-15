@@ -1,93 +1,57 @@
 TheZoc's Dotfiles
 =================
 
-These are my personal dotfiles, managed using [homesick][1]
-They are tested and work fine in MacOS X 10.10.3.
-In future, I might try this in Debian or some other Linux distro and see how they behave.
+These are my personal dotfiles, managed using [homeshick][1]
+
+They are tested and work fine in macOS 10.13.2.
+
+I recently added experimental support to Linux (Debian/Ubuntu).
 
 ## How to Install
 
 Steps:
 
-1) Install homesick
+1) Install homeshick
 
 2) Install dotfiles
 
-### Installing Homesick
+### Installing Homeshick
 
-Install ```rbenv```.
-A simple and short way to do that with homebrew is:
+I recently ditched Homesick in favor of [homeshick](1), since it does the same job and doesn't need ruby installed at all. After all, what's the point of using ruby for dotfiles management, if I don't use it for anything else? :)
 
-```
-brew install rbenv
-brew install ruby-build
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+As a plus, it's way easier now! Start by cloning [homeshick](1). There's no typo
+
+```bash
+git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
 ```
 
-Then use:
+The [homeshick's installation instructions](2) suggest you add it to `.bashrc` or `.zshrc`.
+I feel like it should only be loaded when necessary, so, load it now:
 
-```
-rbenv install -l
-```
-
-To see the available ruby versions. At the time of this writing, the latest stable version is 2.3.1.
-Then, install it:
-
-```
-rbenv install 2.3.1
+```bash
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 ```
 
-You now can see the installed Ruby versions and which version is active by running:
-
-```
-rbenv versions
-```
-
-Now you just need to activate the version you just installed. In this example, it's version 2.3.1.
-
-```
-rbenv global 2.3.1
-```
-
-
-And install homesick:
-
-```
-gem install homesick
-```
-
-And finally do a rehash:
-
-```
-rbenv rehash
-```
-
-Also, don't forget to add:
-
-```
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-```
-
-to your shell rc (.bashrc/.zshrc) file!
+To make `homeshick` shell command always available, refer to the [installation instructions](2) on how to enable it.
+It does even have support for tab completions!
 
 ### Installing dotfiles
 
-Run the command:
+With `homeshick` available as a shell command, go ahead and clone this dotfiles repository:
 
-```
-homesick clone https://github.com/TheZoc/dotfiles.git
+```bash
+homeshick clone --batch TheZoc/dotfiles
 ```
 
-This will download this dotfiles to your user directory. Now you need to link them:
+And link it:
 
-```
-homesick cd
-homesick link
+```bash
+homeshick link dotfiles
 ```
 
 And you're done!
+
+
 
 You might wanto to check .install_zsh and .brew scripts on your home folder ;)
 
@@ -113,7 +77,8 @@ Some basic configurations for git and a global gitignore file.
 
 ## Extra help
 
-There's a bunch of people that work hard for dotfiles improvement and refinement. [You can check them out here][2]!
+There's a bunch of people that work hard for dotfiles improvement and refinement. [You can check them out here][3]!
 
-[1]: https://github.com/technicalpickles/homesick
-[2]: http://dotfiles.github.io/
+[1]: https://github.com/andsens/homeshick
+[2]: https://github.com/andsens/homeshick/wiki/Installation
+[3]: http://dotfiles.github.io/

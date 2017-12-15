@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Only execute this if we are in OSX
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -21,6 +21,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	chsh -s /usr/local/bin/zsh
 
 	./install_zsh_part2
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+	echo Installing zsh...
+	sudo apt-get install zsh
+
+	echo Setting $HOME/.zsh as default zsh dot directory...
+	sudo sh -c "echo 'export ZDOTDIR=\"\${HOME}/.zsh\"' >> /etc/zsh/zshenv"
+
+	echo Changing default shell to zsh
+	chsh -s /usr/bin/zsh
 else
 	echo This script is only compatible with MacOS X at the time.
 fi

@@ -1,7 +1,7 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 
 # Only execute this if we are in OSX
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux-gnu" ]]; then
 	echo Creating Directory ${HOME}/.zsh
 	mkdir -p ${HOME}/.zsh
 
