@@ -11,15 +11,14 @@ brew install colordiff
 brew install colormake
 brew install ctags
 brew install fortune
-brew install ffmpeg --with-libvorbis --with-faac
+brew install ffmpeg --with-libvorbis --with-fdk-aac
 brew install git --with-pcre --with-gettext
 brew install pianobar
 brew install sqlite --with-fts
-brew install python
+brew install python3
 brew install unrar
 brew install wget --enable-iri
-brew install rbenv
-brew install macvim --with-lua --with-override-system-vim
+brew install macvim --with-lua --with-python3 --with-override-system-vim
 brew install aria2
 
 # link apps
@@ -27,7 +26,7 @@ brew linkapps macvim
 
 # homebrew-cask section!
 brew tap caskroom/cask
-brew cask update
+brew update
 
 # Now using Amphetamine from Mac App Store
 # brew cask install keepingyouawake
@@ -39,4 +38,4 @@ brew cask install scroll-reverser
 brew cleanup -s
 brew cask cleanup
 
-echo Be sure to take a look at setup_mvim to properly config macvim.
+echo Be sure to take a look at setup_vim to properly config vim.
