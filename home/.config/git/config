@@ -1,6 +1,7 @@
 [user]
 	name = Felipe \"Zoc\" Silveira
 	email = TheZoc@users.noreply.github.com
+	signingkey = 39CDAB43E7E75A42
 [credential]
 	helper = osxkeychain
 [color]
@@ -14,11 +15,14 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [diff]
-	tool = bc3
+	tool = bc
 [difftool "bc3"]
 	trustExitCode = true
 [merge]
-	tool = bc3
+	tool = bc
 [mergetool "bc3"]
 	trustExitCode = true
+[difftool]
+	prompt = false
