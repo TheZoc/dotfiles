@@ -1,0 +1,219 @@
+# vim:ft=zsh ts=2 sw=2 sts=2
+
+# Latest version of this prompt can be found at: https://github.com/TheZoc/prezto/blob/master/modules/prompt/functions/prompt_zoc_setup
+# Based on original Paradox Theme - http://www.paradox.io/posts/9-my-new-zsh-prompt
+# Best when used with Solarized theme
+
+# Load dependencies.
+pmodload 'helper'
+
+#############################################################################
+# Variables
+#############################################################################
+LEFT_PROMPT_STRING=''
+RIGHT_PROMPT_STRING=''
+CURRENT_BG='NONE'
+BRANCH=$'\uE0A0'
+LN_SYMBOL=$'\uE0A1'
+LOSED_PADLOCK=$'\uE0A2'
+ARROW_RIGHT_BLACK=$'\uE0B0'
+ARROW_RIGHT=$'\uE0B1'
+ARROW_LEFT_BLACK=$'\uE0B2'
+ARROW_LEFT=$'\uE0B3'
+
+# Set some bright colors, since we love Solaried theme :)
+# Bright Magenta = Violet
+BRRED=9
+BRMAGENTA=13
+
+LEFT_SIDE_SEGMENT_SEPARATOR=$ARROW_RIGHT_BLACK
+RIGHT_SIDE_SEGMENT_SEPARATOR=$ARROW_LEFT_BLACK
+
+#############################################################################
+# Helper Functions, Left Side Prompt
+#############################################################################
+# Begin a left side segment
+# Takes two arguments, background and foreground. Both can be omitted,
+# rendering default background/foreground.
+function left_prompt_segment {
+  local bg fg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
+  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+    LEFT_PROMPT_STRING=$LEFT_PROMPT_STRING" %{$bg%F{$CURRENT_BG}%}$LEFT_SIDE_SEGMENT_SEPARATOR%{$fg%} "
+  else
+    LEFT_PROMPT_STRING=$LEFT_PROMPT_STRING"%{$bg%}%{$fg%} "
+  fi
+  CURRENT_BG=$1
+  [[ -n $3 ]] && LEFT_PROMPT_STRING=${LEFT_PROMPT_STRING}${3}
+}
+
+# End the prompt, closing any open segments
+function left_prompt_end {
+  if [[ -n $CURRENT_BG ]]; then
+    LEFT_PROMPT_STRING=$LEFT_PROMPT_STRING" %{%k%F{${CURRENT_BG}}%}${LEFT_SIDE_SEGMENT_SEPARATOR}"
+  else
+    LEFT_PROMPT_STRING=$LEFT_PROMPT_STRING"%{%k%}"
+  fi
+  LEFT_PROMPT_STRING=$LEFT_PROMPT_STRING"%{%f%}"
+  CURRENT_BG='NONE'
+}
+#############################################################################
+# Helper Functions, Right Side Prompt
+#############################################################################
+# Begin a right side segment
+# Takes two arguments, background and foreground. Both can be omitted,
+# rendering default background/foreground.
+function right_prompt_segment {
+  local bg fg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
+
+  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+    RIGHT_PROMPT_STRING=$RIGHT_PROMPT_STRING" %{%K{$CURRENT_BG}%F{$1}%}${RIGHT_SIDE_SEGMENT_SEPARATOR}%{$fg$bg%} "
+  else
+    RIGHT_PROMPT_STRING=$RIGHT_PROMPT_STRING"%{${bg}%}%{${fg}%} "
+  fi
+  CURRENT_BG=$1
+  [[ -n $3 ]] && RIGHT_PROMPT_STRING=${RIGHT_PROMPT_STRING}${3}
+}
+
+# End the prompt, closing any open segments
+function right_prompt_start {
+  RIGHT_PROMPT_STRING=$RIGHT_PROMPT_STRING"%{%k%F{$1}%}%B${RIGHT_SIDE_SEGMENT_SEPARATOR}%b"
+  CURRENT_BG=$1
+}
+
+function right_prompt_end {
+#  if [[ -n $CURRENT_BG ]]; then
+#    RIGHT_PROMPT_STRING=$RIGHT_PROMPT_STRING" %{%K{${CURRENT_BG}}%f%}${RIGHT_SIDE_SEGMENT_SEPARATOR}"
+#  else
+    RIGHT_PROMPT_STRING=$RIGHT_PROMPT_STRING"%{%k%}"
+#  fi
+  RIGHT_PROMPT_STRING=$RIGHT_PROMPT_STRING"%{%f%}"
+  CURRENT_BG='NONE'
+}
+
+function calc_elapsed_time {
+  if [[ $timer_result -ge 3600 ]]; then
+    let "timer_hours = $timer_result / 3600"
+    let "remainder = $timer_result % 3600"
+    let "timer_minutes = $remainder / 60"
+    let "timer_seconds = $remainder % 60"
+    print -P "%B%F{red}>>> elapsed time ${timer_hours}h${timer_minutes}m${timer_seconds}s%b"
+  elif [[ $timer_result -ge 60 ]]; then
+    let "timer_minutes = $timer_result / 60"
+    let "timer_seconds = $timer_result % 60"
+    print -P "%B%F{yellow}>>> elapsed time ${timer_minutes}m${timer_seconds}s%b"
+  elif [[ $timer_result -gt 10 ]]; then
+    print -P "%B%F{green}>>> elapsed time ${timer_result}s%b"
+  fi
+}
+
+
+#############################################################################
+# Hooks
+#############################################################################
+start_time=$SECONDS
+function prompt_zoc_preexec {
+  start_time=$SECONDS
+}
+
+function prompt_zoc_precmd {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+
+  # Get Git repository information.
+  if (( $+functions[git-info] )); then
+    git_status=git-info
+  fi
+  timer_result=$(($SECONDS-$start_time))
+  if [[ $timer_result -gt 10 ]]; then
+    calc_elapsed_time
+  fi
+  start_time=$SECONDS
+
+  ruby-info
+  build_left_prompt
+  build_right_prompt
+}
+
+#############################################################################
+# Build the prompts!
+#############################################################################
+function build_left_prompt {
+  LEFT_PROMPT_STRING=''
+  left_prompt_segment black default '%(1?;%{%F{red}%}✘ ;)%(!;%{%F{yellow}%}⚡ ;)%(1j;%{%F{cyan}%}%j⚙ ;)%{%F{blue}%}%n%{%F{red}%}@%{%F{green}%}%m'
+  left_prompt_segment blue black '%2~'
+  if $git_status; then
+    if [ -z "${git_info[dirty]}" ]; then
+      left_prompt_segment green black "${(e)git_info[prompt]}${git_info[status]}"
+    else
+      left_prompt_segment yellow black "${(e)git_info[prompt]}${git_info[status]}"
+    fi
+  fi
+  left_prompt_end
+}
+
+function build_right_prompt {
+  RIGHT_PROMPT_STRING=''
+  right_prompt_start black
+  right_prompt_segment black default '[%D{%L:%M:%S %p}]'
+  right_prompt_segment $BRMAGENTA black "${ruby_info[version]} "
+  right_prompt_end
+}
+
+#############################################################################
+# Setup Function
+#############################################################################
+function prompt_zoc_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook preexec prompt_zoc_preexec
+  add-zsh-hook precmd prompt_zoc_precmd
+
+  zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
+  zstyle ':prezto:module:editor:info:keymap:primary' format '%B%F{default}❯%F{cyan}❯%F{blue}❯%f%b'
+  zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format '%F{red}♺%f'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '%B%F{red}❮%F{yellow}❮%F{default}❮%f%b'
+  zstyle ':prezto:module:git:info' verbose yes
+  zstyle ':prezto:module:git:info:action' format '! %s'
+  zstyle ':prezto:module:git:info:added' format '✚'
+  zstyle ':prezto:module:git:info:ahead' format '↑⬆'
+  zstyle ':prezto:module:git:info:behind' format '↓⬇'
+  zstyle ':prezto:module:git:info:branch' format ' %b'
+  zstyle ':prezto:module:git:info:commit' format '➦ %.7c'
+  zstyle ':prezto:module:git:info:deleted' format '✖'
+  zstyle ':prezto:module:git:info:modified' format '✱'
+  zstyle ':prezto:module:git:info:position' format '%p'
+  zstyle ':prezto:module:git:info:renamed' format '➙'
+  zstyle ':prezto:module:git:info:stashed' format 's'
+  zstyle ':prezto:module:git:info:unmerged' format '═'
+  zstyle ':prezto:module:git:info:unindexed' format '◧'
+  zstyle ':prezto:module:git:info:untracked' format '?'
+  zstyle ':prezto:module:git:info:dirty' format '☣%D'
+  zstyle ':prezto:module:ruby:info:version' format '%v'
+
+#   'prompt' '$(coalesce "%b" "%p" "%c")%s' \
+#   'prompt' '%b %p %c %s' \
+  zstyle ':prezto:module:git:info:keys' format \
+    'prompt' '%b %p %s' \
+    'status' '%A%B%S%a%d%m%r%U%I%u%D' \
+    'dirty'  '%D'
+
+  # Define prompts.
+  PROMPT='
+%{%f%b%k%}$LEFT_PROMPT_STRING
+ ${editor_info[keymap]} '
+  RPROMPT=$'%{\e[1A%}''${RIGHT_PROMPT_STRING}'$'%{\e[1B%}'
+#  RPROMPT='${RIGHT_PROMPT_STRING}'
+  SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+}
+
+prompt_zoc_setup "$@"

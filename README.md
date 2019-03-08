@@ -17,22 +17,22 @@ Steps:
 
 ### Installing Homeshick
 
-I recently ditched Homesick in favor of [homeshick](1), since it does the same job and doesn't need ruby installed at all. After all, what's the point of using ruby for dotfiles management, if I don't use it for anything else? :)
+I recently ditched Homesick in favor of [homeshick][1], since it does the same job and doesn't need ruby installed at all. After all, what's the point of using ruby for dotfiles management, if I don't use it for anything else? :)
 
-As a plus, it's way easier now! Start by cloning [homeshick](1). There's no typo
+As a plus, it's way easier now! Start by cloning [homeshick][1]. There's no typo in the command below, it is indeed supposed to reside inside `.homesick`
 
 ```bash
 git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
 ```
 
-The [homeshick's installation instructions](2) suggest you add it to `.bashrc` or `.zshrc`.
+The [homeshick's installation instructions][2] suggest you add it to `.bashrc` or `.zshrc`.
 I feel like it should only be loaded when necessary, so, load it now:
 
 ```bash
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 ```
 
-To make `homeshick` shell command always available, refer to the [installation instructions](2) on how to enable it.
+To make `homeshick` shell command always available, refer to the [installation instructions][2] on how to enable it.
 It does even have support for tab completions!
 
 ### Installing dotfiles

@@ -1,32 +1,43 @@
 #!/bin/zsh
 
-# Only execute this if we are in OSX
-if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux-gnu" ]]; then
-	echo Creating Directory ${HOME}/.zsh
-	mkdir -p ${HOME}/.zsh
-
-	echo Setting ZDOTDIR to ${HOME}/.zsh
-	export ZDOTDIR=${HOME}/.zsh
-
-	echo Downloading customized version of Prezto...
-	git clone --recursive https://github.com/thezoc/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-
-	setopt EXTENDED_GLOB
-	for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-	  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-	done
-
-	pushd
-
-	cd "${ZDOTDIR:-$HOME}/.zprezto"
-
-	git remote add upstream https://github.com/sorin-ionescu/prezto.git
-	git fetch upstream
-	git checkout master
-	git submodule update --init --recursive
-	echo Be sure to take a look at the utility update_prezto to fully update the install
-
-	popd
-else
-	echo This script is only compatible with MacOS X at the time.
+# Only execute this if we are in macOS or Linux
+if [[ "$OSTYPE" != "darwin"* && "$OSTYPE" != "linux-gnu" ]]; then
+    echo "This script is only compatible with macOS and Linux at this time."
+    exit 1
 fi
+
+echo "Creating Directory ${HOME}/.zsh"
+mkdir -p ${HOME}/.zsh
+
+# Avoid issues with old versions of zsh
+echo "Setting ZDOTDIR to ${HOME}/.zsh"
+export ZDOTDIR=${HOME}/.zsh
+
+echo "Downloading latest version of Prezto..."
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR}/.zprezto"
+
+# Not linking .zpreztorc and .zshrc on purpose to use our own file from our castle
+echo "Linking Prezto configs"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR}"/.zprezto/runcoms/^(README.md|zpreztorc|zshrc|zprofile)(.N); do
+    if [[ -a "${ZDOTDIR}/.${rcfile:t}" ]]; then
+        echo "[ERROR] File already exists: ${ZDOTDIR}/.${rcfile:t}"
+    else
+        ln -s "$rcfile" "${ZDOTDIR}/.${rcfile:t}"
+    fi
+done
+
+# Add the theme
+echo "Linking custom theme"
+SOURCE=${(%):-%x}
+ln -s "${SOURCE:a:h:h}/themes/prompt_zoc_setup" "${ZDOTDIR}/.zprezto/modules/prompt/functions/"
+
+# This is probably not needed anymore
+pushd
+
+cd "${ZDOTDIR}/.zprezto"
+git pull
+git submodule update --init --recursive
+echo "Be sure to run zprezto-update to update Prezto!"
+
+popd

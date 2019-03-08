@@ -1,35 +1,56 @@
 #!/bin/bash
 
-# Only execute this if we are in OSX
+# Only execute this if we are in macOS or Linux
+if [[ "$OSTYPE" != "darwin"* && "$OSTYPE" != "linux-gnu" ]]; then
+    echo "This script is only compatible with macOS and Linux at this time."
+    exit 1
+fi
+
+# macOS setup area
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	echo Updating homebrew...
-	brew update
-	
-	echo Upgrading all installed packages...
-	brew upgrade
+    echo "Updating homebrew..."
+    brew update
+    
+    echo "Upgrading all installed packages..."
+    brew upgrade
 
-	echo Installing zsh...
-	brew install zsh
+    echo "Installing zsh..."
+    brew install zsh
 
-	echo Adding brew zsh to /etc/shells
-	sudo sh -c "echo '/usr/local/bin/zsh' >> /etc/shells"
+    if ! grep -Fxq "/usr/local/bin/zsh" "/etc/shells"; then
+        echo "Adding brew zsh to /etc/shells"
+        sudo sh -c "echo '/usr/local/bin/zsh' >> /etc/shells"
+    fi
 
-	echo Setting $HOME/.zsh as default zsh dot directory...
-	sudo sh -c "echo 'export ZDOTDIR=\"\${HOME}/.zsh\"' >> /etc/zshenv"
+    ZDOTDIR_EXPORT='export ZDOTDIR="${HOME}/.zsh"'
+    SYS_ZSHENV='/etc/zshenv'
+    if ! grep -Fxq "${ZDOTDIR_EXPORT}" "${SYS_ZSHENV}"; then
+        echo "Setting $HOME/.zsh as default zsh dot directory..."
+        sudo zsh -c "echo '${ZDOTDIR_EXPORT}' >> ${SYS_ZSHENV}"
+    fi
 
-	echo Changing default shell to zsh
-	chsh -s /usr/local/bin/zsh
+    echo "Changing default shell to zsh"
+    chsh -s /usr/local/bin/zsh
 
-	./install_zsh_part2
+    ./install_zsh_part2
+
+# Linux setup area
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-	echo Installing zsh...
-	sudo apt-get install zsh
+    if (! dpkg --get-selections | grep -q "^zsh[[:space:]]*install$" >/dev/null) || \
+       (! dpkg --get-selections | grep -q "^gettext[[:space:]]*install$" >/dev/null); then
+        echo "Installing zsh and gettext..."
+        sudo apt-get install zsh gettext
+    fi
 
-	echo Setting $HOME/.zsh as default zsh dot directory...
-	sudo sh -c "echo 'export ZDOTDIR=\"\${HOME}/.zsh\"' >> /etc/zsh/zshenv"
+    ZDOTDIR_EXPORT='export ZDOTDIR="${HOME}/.zsh"'
+    SYS_ZSHENV='/etc/zsh/zshenv'
+    if ! grep -Fxq "${ZDOTDIR_EXPORT}" "${SYS_ZSHENV}"; then
+        echo "Setting $HOME/.zsh as default zsh dot directory..."
+        sudo zsh -c "echo '${ZDOTDIR_EXPORT}' >> ${SYS_ZSHENV}"
+    fi
 
-	echo Changing default shell to zsh
-	chsh -s /usr/bin/zsh
-else
-	echo This script is only compatible with MacOS X at the time.
+    echo "Changing default shell to zsh"
+    chsh -s /usr/bin/zsh
+
+    ./install_zsh_part2
 fi
