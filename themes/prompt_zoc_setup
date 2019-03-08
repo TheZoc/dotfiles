@@ -133,7 +133,8 @@ function prompt_zoc_precmd {
   fi
   start_time=$SECONDS
 
-  ruby-info
+  # Disabled for now
+  # ruby-info
   build_left_prompt
   build_right_prompt
 }
