@@ -26,3 +26,6 @@
 	trustExitCode = true
 [difftool]
 	prompt = false
+[alias]
+	dt = difftool
+	mt = mergetool
