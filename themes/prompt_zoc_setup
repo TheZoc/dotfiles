@@ -133,8 +133,6 @@ function prompt_zoc_precmd {
   fi
   start_time=$SECONDS
 
-  # Disabled for now
-  # ruby-info
   build_left_prompt
   build_right_prompt
 }
@@ -160,7 +158,9 @@ function build_right_prompt {
   RIGHT_PROMPT_STRING=''
   right_prompt_start black
   right_prompt_segment black default '[%D{%L:%M:%S %p}]'
-  right_prompt_segment $BRMAGENTA black "${ruby_info[version]} "
+  if [[ -n $VIRTUAL_ENV ]]; then
+    right_prompt_segment cyan black "$(basename $VIRTUAL_ENV)/$(basename $(dirname $VIRTUAL_ENV)) "
+  fi
   right_prompt_end
 }
 
@@ -199,7 +199,6 @@ function prompt_zoc_setup {
   zstyle ':prezto:module:git:info:unindexed' format '◧'
   zstyle ':prezto:module:git:info:untracked' format '?'
   zstyle ':prezto:module:git:info:dirty' format '☣%D'
-  zstyle ':prezto:module:ruby:info:version' format '%v'
 
 #   'prompt' '$(coalesce "%b" "%p" "%c")%s' \
 #   'prompt' '%b %p %c %s' \
