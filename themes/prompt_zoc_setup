@@ -179,6 +179,9 @@ function prompt_zoc_setup {
   add-zsh-hook preexec prompt_zoc_preexec
   add-zsh-hook precmd prompt_zoc_precmd
 
+  # Tell Prezto we will be managing this prompt
+  zstyle ':prezto:module:prompt' managed 'yes'
+
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
   zstyle ':prezto:module:editor:info:keymap:primary' format '%B%F{default}❯%F{cyan}❯%F{blue}❯%f%b'
   zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format '%F{red}♺%f'

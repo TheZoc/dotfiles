@@ -6,6 +6,14 @@ if [[ "$OSTYPE" != "darwin"* && "$OSTYPE" != "linux-gnu" ]]; then
     exit 1
 fi
 
+# TODO: Add this to $HOME/.zshenv insteam of /etc/zshenv
+ZDOTDIR_EXPORT='export ZDOTDIR="${HOME}/.zsh"'
+SYS_ZSHENV='/etc/zshenv'
+if ! grep -Fxq "${ZDOTDIR_EXPORT}" "${SYS_ZSHENV}"; then
+    echo "Setting $HOME/.zsh as default zsh dot directory..."
+    sudo zsh -c "echo '${ZDOTDIR_EXPORT}' >> ${SYS_ZSHENV}"
+fi
+
 echo "Creating Directory ${HOME}/.zsh"
 mkdir -p ${HOME}/.zsh
 
@@ -32,12 +40,5 @@ echo "Linking custom theme"
 SOURCE=${(%):-%x}
 ln -s "${SOURCE:a:h:h}/themes/prompt_zoc_setup" "${ZDOTDIR}/.zprezto/modules/prompt/functions/"
 
-# This is probably not needed anymore
-pushd
-
-cd "${ZDOTDIR}/.zprezto"
-git pull
-git submodule update --init --recursive
+# Print update command, so we can remember to run it later on
 echo "Be sure to run zprezto-update to update Prezto!"
-
-popd

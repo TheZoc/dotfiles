@@ -32,7 +32,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Changing default shell to zsh"
     chsh -s /usr/local/bin/zsh
 
-    ./install_zsh_part2
+    ./install_prezto
 
 # Linux setup area
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -52,5 +52,5 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "Changing default shell to zsh"
     chsh -s /usr/bin/zsh
 
-    ./install_zsh_part2
+    ./install_prezto
 fi
