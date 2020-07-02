@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Only execute this if we are in macOS or Linux
-if [[ "$OSTYPE" != "darwin"* && "$OSTYPE" != "linux-gnu" ]]; then
+if [[ "$OSTYPE" != "darwin"* && "$OSTYPE" != "linux-gnu"* ]]; then
     echo "This script is only compatible with macOS and Linux at this time."
     exit 1
 fi
@@ -10,7 +10,7 @@ fi
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Updating homebrew..."
     brew update
-    
+
     echo "Upgrading all installed packages..."
     brew upgrade
 
@@ -35,22 +35,35 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     ./install_prezto
 
 # Linux setup area
-elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    if (! dpkg --get-selections | grep -q "^zsh[[:space:]]*install$" >/dev/null) || \
-       (! dpkg --get-selections | grep -q "^gettext[[:space:]]*install$" >/dev/null); then
-        echo "Installing zsh and gettext..."
-        sudo apt-get install zsh gettext
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Arch Linux Setup
+    if grep -q "Arch" "/etc/issue"; then
+        if ! pacman -Qs "zsh" > /dev/null; then
+            echo "Installing zsh..."
+            sudo pacman -S --needed --noconfirm "zsh"
+        fi
+    # Debian Setup
+    elif grep -q "Debian" "/etc/issue"; then
+        if (! dpkg --get-selections | grep -q "^zsh[[:space:]]*install$" >/dev/null) || \
+           (! dpkg --get-selections | grep -q "^gettext[[:space:]]*install$" >/dev/null); then
+            echo "Installing zsh and gettext..."
+            sudo apt-get install zsh gettext
+        fi
+    # Unsupported distro
+    else
+        echo "Unsupported Linux distro"
+        exit 1
     fi
 
     ZDOTDIR_EXPORT='export ZDOTDIR="${HOME}/.zsh"'
     SYS_ZSHENV='/etc/zsh/zshenv'
-    if ! grep -Fxq "${ZDOTDIR_EXPORT}" "${SYS_ZSHENV}"; then
+    if [ ! -f $SYS_ZSHENV ] || ([ -f $SYS_ZSHENV ] && ! grep -Fxq "${ZDOTDIR_EXPORT}" "${SYS_ZSHENV}"); then
         echo "Setting $HOME/.zsh as default zsh dot directory..."
         sudo zsh -c "echo '${ZDOTDIR_EXPORT}' >> ${SYS_ZSHENV}"
     fi
 
     echo "Changing default shell to zsh"
-    chsh -s /usr/bin/zsh
+    sudo chsh -s /usr/bin/zsh ${USER}
 
-    ./install_prezto
+    echo "You might want to run ./install_prezto now."
 fi

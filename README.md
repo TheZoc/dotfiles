@@ -5,7 +5,7 @@ These are my personal dotfiles, managed using [homeshick][1]
 
 They are tested and work fine in macOS 10.13.2.
 
-I recently added experimental support to Linux (Debian/Ubuntu).
+I recently added experimental support to Linux (Debian/Ubuntu and Arch Linux).
 
 ## How to Install
 

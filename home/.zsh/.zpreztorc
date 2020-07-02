@@ -21,7 +21,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     'history-substring-search'
 
 # Linux modules
-elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   zstyle ':prezto:load' pmodule \
     'environment' \
     'terminal' \

@@ -10,7 +10,7 @@ fi
 ZDOTDIR_EXPORT='export ZDOTDIR="${HOME}/.zsh"'
 SYS_ZSHENV='/etc/zshenv'
 if ! grep -Fxq "${ZDOTDIR_EXPORT}" "${SYS_ZSHENV}"; then
-    echo "Setting $HOME/.zsh as default zsh dot directory..."
+    echo "Setting $HOME/.zsh as default .zsh directory for configuration files..."
     sudo zsh -c "echo '${ZDOTDIR_EXPORT}' >> ${SYS_ZSHENV}"
 fi
 
