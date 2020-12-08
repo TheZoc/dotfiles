@@ -6,36 +6,30 @@ echo Upgrading installed forumlas...
 brew upgrade
 
 echo Installing custom list of formulas...
-brew install cmake
 brew install colordiff
 brew install colormake
-brew install ctags
-brew install fortune
-brew install ffmpeg --with-libvorbis --with-fdk-aac
-brew install git --with-pcre --with-gettext
+brew install git
 brew install pianobar
-brew install sqlite --with-fts
 brew install python3
 brew install unrar
-brew install wget --enable-iri
-brew install macvim --with-lua --with-python3 --with-override-system-vim
+brew install wget
+brew install macvim
 brew install aria2
 
 # link apps
 brew linkapps macvim
 
-# homebrew-cask section!
-brew tap caskroom/cask
-brew update
-
+# Old brew cask section
 # Now using Amphetamine from Mac App Store
-# brew cask install keepingyouawake
-# brew cask install nosleep
-brew cask install iterm2
-brew cask install macs-fan-control
-brew cask install scroll-reverser
+brew install iterm2
+brew install macs-fan-control
+brew install scroll-reverser
+brew install sublime-text
+brew install sublime-merge
+brew install beyond-compare
+brew install forklift
 
 brew cleanup -s
-brew cask cleanup
 
-echo Be sure to take a look at setup_vim to properly config vim.
+echo In the past, this is where I suggest you to check setup_vim.
+echo Now, that vundle is pretty much dead, this section needs a rework.
