@@ -16,9 +16,6 @@ brew install wget
 brew install macvim
 brew install aria2
 
-# link apps
-brew linkapps macvim
-
 # Old brew cask section
 # Now using Amphetamine from Mac App Store
 brew install iterm2
