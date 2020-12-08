@@ -17,9 +17,4 @@ export APPEND_HISTORY=1
 export PROMPT_COMMAND="history -a"
 export PAGER=most
 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
 export CLICOLOR=1
-
-
-eval "$(rbenv init -)"
