@@ -22,7 +22,7 @@ I recently ditched Homesick in favor of [homeshick][1], since it does the same j
 As a plus, it's way easier now! Start by cloning [homeshick][1]. There's no typo in the command below, it is indeed supposed to reside inside `.homesick`
 
 ```bash
-git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
+git clone https://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
 ```
 
 The [homeshick's installation instructions][2] suggest you add it to `.bashrc` or `.zshrc`.
